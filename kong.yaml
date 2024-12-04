@@ -1,0 +1,82 @@
+_format_version: "3.0"
+_workspace: my-ws
+ca_certificates:
+- cert: |-
+    ╰─➤                                                                                                                                                                                                                                                                                                                                                                   127 ↵
+    -----BEGIN CERTIFICATE-----
+    MIIFDzCCA3egAwIBAgIQe34sdrEdUxSOX7/4lNWUNjANBgkqhkiG9w0BAQsFADCB
+    nzEeMBwGA1UEChMVbWtjZXJ0IGRldmVsb3BtZW50IENBMTowOAYDVQQLDDFzaHJp
+    a2FudGhAUy1SYWpnb3BhbGFuLU0xMSAoU2hyaWthbnRoIFJhamdvcGFsYW4pMUEw
+    PwYDVQQDDDhta2NlcnQgc2hyaWthbnRoQFMtUmFqZ29wYWxhbi1NMTEgKFNocmlr
+    YW50aCBSYWpnb3BhbGFuKTAeFw0yNDExMjUwMzM1NTFaFw0zNDExMjUwMzM1NTFa
+    MIGfMR4wHAYDVQQKExVta2NlcnQgZGV2ZWxvcG1lbnQgQ0ExOjA4BgNVBAsMMXNo
+    cmlrYW50aEBTLVJhamdvcGFsYW4tTTExIChTaHJpa2FudGggUmFqZ29wYWxhbikx
+    QTA/BgNVBAMMOG1rY2VydCBzaHJpa2FudGhAUy1SYWpnb3BhbGFuLU0xMSAoU2hy
+    aWthbnRoIFJhamdvcGFsYW4pMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKC
+    AYEAxa4XhoWGYJyoMW+WGbh3iaxkjTi9FnY71BeZFCeJlwS3vepJ+cqE6gVjxJE9
+    NkJAoyuPyGtYi+YgeBWst1kQvoPgN5Ot4hSm7fW86SPfP0Tt4hh5yls/4JBsKNPO
+    BhCWhhF19c/C1tJ3gbaWveTUELWGK6bD18isnypWujOn5sGuCD/wGOGjoeVxULXN
+    /86BCJrHLkhU21CnzDutXvrARZXlWq5UTVhJKosObiT4DybUnmIeOHLGzYenNCrh
+    5Aiq7NvAzKMivNiIHxft7mSMOS/CWFIBJqHzo3nSeNKRGqTay5gftDVPcDRF/jEx
+    GX2/LFYZoKMcd2UUM+Qwwm9Mp0VSEpTyFdn1BZbKjkTwfioNpDQpbXFs1PGBsNGV
+    EiY2Ul7mEfSRATRvMUyFOCdf/UCS7JDnnwmdN2uAeJfx9FDo79ajulcNqcyzUdYL
+    Rmsz94MZ8PE4BPOHqXluoA1DjB0iMCWYjXncfIWUqsMSdajdXIJ6ISpphs0RIObn
+    k9VpAgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICBDASBgNVHRMBAf8ECDAGAQH/AgEA
+    MB0GA1UdDgQWBBSod+YBPHLZvqX4SHgdJZ3blBH3wzANBgkqhkiG9w0BAQsFAAOC
+    AYEAjQplh0jv2rkWnYDjur+Ojim9SwaxrdcOr9XHyxMCmif4kU/QxE1bLSLNjMD8
+    ZZ8yzQOCDb1zftSETwzcMhLDHk7TESHPvgAWSxf6FGxEDfXeELYFheG9NSH6J6Fq
+    9lJz0LfdUZC0YkLKDjzV+6OHU2I8nkHUO7FD73wnriZeLiKGEGidEtQefShgkw89
+    s5fuC0aZKciy5zYwi8jyBCsR2OqFBz4VgLHMjTTvtw7Rcs5gsbfRK8qKL6KNp/qK
+    xK8K2fR1D0DV9ZJy3NX9j17W6nVej0DeDUWioTZMODDxO6LISWwLx48j08JEuv3u
+    jmckVkrXHV3i8C0W7n8iOdviepeKwo29yUH25zGcsHIP7Ycku9ZnyGF+rjtvDSkn
+    +7lcY9SJwiZpZUu0BK3JTZ+yaG0A5s7DKpRcJbVNJOaBs+skCVbba5Gdu35xhNlB
+    GcUsSnqcUxB5Erwd1QtvL1hDkAzsePROlYWgEmtJjP0mEmJ9sCdrB9Kbge5iURk0
+    b4C4
+    -----END CERTIFICATE-----
+  cert_digest: cb5dc3c0a724628b7feb906970d6c7e5ca4a55f9266cf4f66c9814be7eb4d577
+  id: 572cfdd6-e7e7-433c-bcec-52d9b9383dc6
+plugins:
+- config:
+    anonymous: null
+    hide_credentials: false
+    key_in_body: false
+    key_in_header: true
+    key_in_query: true
+    key_names:
+    - apikey
+    run_on_preflight: true
+  enabled: true
+  instance_name: k1
+  name: key-auth
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+  - ws
+  - wss
+services:
+- connect_timeout: 60000
+  enabled: true
+  host: httpbin.org
+  name: s1
+  path: /anything
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    name: r1
+    path_handling: v0
+    paths:
+    - /testing
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
